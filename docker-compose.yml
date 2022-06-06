@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: manifest/docker/app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+
+  web:
+    build:
+      context: ./
+      dockerfile: manifest/docker/web.dockerfile
+    working_dir: /var/www
+    volumes_from:
+      - app
+    ports:
+      - 8080:80
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./runtime-data/redis:/var/lib/redis
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=master
