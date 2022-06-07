@@ -1,0 +1,12 @@
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <embeddable name="Core\DeviceIdentifier">
+        <id name="deviceUuid" column="uuid"      type="string"  />
+        <id name="tenantId"   column="tenant_id" type="integer" />
+    </embeddable>
+</doctrine-mapping>
+
+
